@@ -1,0 +1,33 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper Functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && 
+        (request.auth.token.email == "khaledali10060@gmail.com" && request.auth.token.email_verified == true);
+    }
+
+    function isValidAppointment(data) {
+      return data['name'] is string && data['name'].size() >= 2 && data['name'].size() <= 100 &&
+             data['phone'] is string && data['phone'].size() >= 8 && data['phone'].size() <= 20 &&
+             data['service'] is string &&
+             data['dateTime'] is string &&
+             (data['status'] == 'pending' || data['status'] == 'confirmed' || data['status'] == 'cancelled') &&
+             data['createdAt'] is string;
+    }
+
+    match /appointments/{appointmentId} {
+      allow create: if isValidAppointment(request.resource.data);
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /users/{userId} {
+      allow read: if isAuthenticated() && request.auth.uid == userId;
+      allow write: if isAdmin();
+    }
+  }
+}

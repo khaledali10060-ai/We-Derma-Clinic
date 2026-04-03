@@ -1,0 +1,5 @@
+{
+  "name": "We Derma Clinic",
+  "description": "عيادة متخصصة في الجلدية، الليزر، والتجميل بأعلى معايير الجودة في التجمع الخامس.",
+  "requestFramePermissions": ["geolocation"]
+}

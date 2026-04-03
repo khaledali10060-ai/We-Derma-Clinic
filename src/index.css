@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Cairo", ui-sans-serif, system-ui, sans-serif;
+  --color-medical-teal: #6B3E2E; /* Deep Brown from Logo */
+  --color-medical-blue: #E6C9A8; /* Warm Beige from Logo */
+  --color-soft-gold: #8B5A42; /* Complementary Brown */
+  --color-luxury-gray: #F5E6D3; /* Light Cream */
+  --color-deep-slate: #4A2B20; /* Darker Brown */
+}
+
+@layer base {
+  body {
+    @apply font-sans text-[#6B3E2E] bg-[#F5E6D3];
+    direction: rtl;
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .glass-nav {
+    @apply bg-[#F5E6D3]/70 backdrop-blur-xl border-b border-[#6B3E2E]/10;
+  }
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-md border border-[#E6C9A8]/50;
+  }
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#6B3E2E] to-[#8B5A42];
+  }
+  .bg-medical-gradient {
+    @apply bg-gradient-to-br from-[#6B3E2E] to-[#8B5A42];
+  }
+  .soft-shadow {
+    box-shadow: 0 20px 50px -12px rgba(107, 62, 46, 0.12);
+  }
+  .luxury-shadow {
+    box-shadow: 0 30px 60px -15px rgba(74, 43, 32, 0.08);
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .blob-animation {
+    animation: blob 7s infinite;
+  }
+}
+
+@keyframes blob {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
