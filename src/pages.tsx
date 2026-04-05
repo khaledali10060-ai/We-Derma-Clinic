@@ -134,7 +134,7 @@ const InstagramFeed = () => {
   );
 };
 
-export const Home = () => {
+export const Home = ({ setSelectedService }: any) => {
   const { t, language, isRTL } = useLanguage();
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [bookingStatus, setBookingStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -357,17 +357,18 @@ export const Home = () => {
             {services.map((service, i) => (
               <motion.div 
                 key={i}
-                className="min-w-[280px] md:min-w-[350px] bg-white p-8 md:p-10 rounded-[2.5rem] border border-[#E6C9A8]/20 soft-shadow snap-start group"
+                onClick={() => setSelectedService(service)}
+                className="min-w-[280px] md:min-w-[350px] bg-white p-8 md:p-10 rounded-[2.5rem] border border-[#E6C9A8]/20 soft-shadow snap-start group cursor-pointer"
               >
                 <div className="w-16 h-16 rounded-2xl bg-medical-teal/5 flex items-center justify-center mb-8 group-hover:bg-medical-gradient group-hover:text-white transition-all duration-500">
                   {service.icon}
                 </div>
                 <h3 className="text-xl md:text-2xl font-black text-[#6B3E2E] mb-4">{t(service.title)}</h3>
                 <p className="text-[#6B3E2E]/70 leading-relaxed font-light text-base md:text-lg mb-8 line-clamp-3">{t(service.description)}</p>
-                <a href="/services" className="text-medical-teal font-black text-sm flex items-center gap-2 group-hover:gap-4 transition-all">
+                <button className="text-medical-teal font-black text-sm flex items-center gap-2 group-hover:gap-4 transition-all">
                   {t({ ar: "اكتشفي المزيد", en: "Discover More" })}
                   <ArrowLeft className={`w-4 h-4 ${isRTL ? "" : "rotate-180"}`} />
-                </a>
+                </button>
               </motion.div>
             ))}
           </div>
@@ -656,7 +657,7 @@ export const Home = () => {
   );
 };
 
-export const Services = () => {
+export const Services = ({ setSelectedService }: any) => {
   const { t, isRTL } = useLanguage();
   return (
     <section className="py-32 bg-[#E6C9A8]/10 min-h-screen">
@@ -671,12 +672,13 @@ export const Services = () => {
           {services.map((service, i) => (
             <motion.div 
               key={i}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
               whileHover={{ y: -15 }}
-              className="bg-white p-8 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] border border-[#E6C9A8]/20 soft-shadow group transition-all duration-500 relative overflow-hidden flex flex-col"
+              onClick={() => setSelectedService(service)}
+              className="bg-white p-8 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] border border-[#E6C9A8]/20 soft-shadow group transition-all duration-500 relative overflow-hidden flex flex-col cursor-pointer"
             >
               <div className={`absolute top-0 ${isRTL ? "left-0" : "right-0"} w-2 h-full bg-medical-gradient opacity-0 group-hover:opacity-100 transition-opacity`} />
               

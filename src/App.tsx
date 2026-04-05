@@ -63,21 +63,21 @@ const Navbar = ({ setSelectedDoctor }: { setSelectedDoctor: (doc: any) => void }
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "glass-nav py-2" : "bg-transparent py-4"}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "bg-white/95 backdrop-blur-md shadow-sm py-3" : "bg-[#FDF8F3] py-4 md:py-6"}`}>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <div className="flex items-center shrink-0">
           <Link to="/">
             <img 
               src="https://i.postimg.cc/hGn2M6Tc/556542688-122185234094376669-5342517379412419834-n-removebg-preview.png" 
               alt="We Derma Logo" 
-              className={`${scrolled ? "h-12 md:h-16" : "h-20 md:h-28"} w-auto object-contain transition-all duration-500`}
+              className={`${scrolled ? "h-12 md:h-14" : "h-16 md:h-20"} w-auto object-contain transition-all duration-500`}
               referrerPolicy="no-referrer"
             />
           </Link>
         </div>
 
         {/* Desktop Menu */}
-        <div className="hidden lg:flex items-center gap-6 xl:gap-10 text-sm font-bold text-[#6B3E2E]/60">
+        <div className="hidden lg:flex items-center gap-6 xl:gap-10 text-sm font-bold text-[#6B3E2E]/90">
           {navLinks.map((link, i) => (
             <Link key={i} to={link.path} className={`hover:text-medical-teal transition-colors relative group ${location.pathname === link.path ? 'text-medical-teal' : ''}`}>
               {link.name}
@@ -119,7 +119,7 @@ const Navbar = ({ setSelectedDoctor }: { setSelectedDoctor: (doc: any) => void }
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="lg:hidden fixed inset-0 top-[72px] bg-[#F5E6D3]/95 backdrop-blur-xl z-40 overflow-y-auto"
+            className="lg:hidden fixed inset-0 top-[96px] md:top-[128px] bg-[#FDF8F3]/95 backdrop-blur-xl z-40 overflow-y-auto"
           >
             <div className="px-8 py-12 flex flex-col gap-8 text-2xl font-black text-[#6B3E2E] text-center">
               {navLinks.map((link, i) => (
@@ -267,6 +267,7 @@ const Footer = () => {
 
 const MainApp = () => {
   const [selectedDoctor, setSelectedDoctor] = useState<any>(null);
+  const [selectedService, setSelectedService] = useState<any>(null);
   const { t, language, isRTL } = useLanguage();
   const phoneNumber = "01060008882";
   const whatsappLink = `https://wa.me/${phoneNumber}`;
@@ -275,10 +276,10 @@ const MainApp = () => {
     <div className={`min-h-screen bg-[#F5E6D3] selection:bg-medical-teal/10 overflow-x-hidden ${isRTL ? 'font-arabic' : 'font-sans'}`}>
       <Navbar setSelectedDoctor={setSelectedDoctor} />
       
-      <main className="pt-[72px]">
+      <main className="pt-[96px] md:pt-[128px]">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/services" element={<Services />} />
+          <Route path="/" element={<Home setSelectedService={setSelectedService} />} />
+          <Route path="/services" element={<Services setSelectedService={setSelectedService} />} />
           <Route path="/about" element={<About />} />
           <Route path="/doctors" element={<Doctors setSelectedDoctor={setSelectedDoctor} />} />
           <Route path="/results" element={<Results />} />
@@ -299,6 +300,60 @@ const MainApp = () => {
           {t('nav.bookNow')}
         </span>
       </motion.a>
+
+      {/* Service Details Modal */}
+      <AnimatePresence>
+        {selectedService && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-[#4A2B20]/95 backdrop-blur-xl"
+          >
+            <motion.div 
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              className="bg-white w-full max-w-4xl max-h-[95vh] rounded-[2rem] md:rounded-[3rem] overflow-hidden relative flex flex-col"
+            >
+              <button 
+                onClick={() => setSelectedService(null)}
+                className={`absolute top-6 ${isRTL ? 'right-6' : 'left-6'} z-10 w-12 h-12 rounded-full bg-black/10 backdrop-blur-md flex items-center justify-center text-[#6B3E2E] hover:bg-medical-teal hover:text-white transition-all`}
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              <div className="p-8 md:p-16 overflow-y-auto custom-scrollbar flex-grow">
+                <div className="w-20 h-20 rounded-3xl bg-medical-teal/10 flex items-center justify-center text-medical-teal mb-8">
+                  {selectedService.icon}
+                </div>
+                <h2 className="text-3xl md:text-5xl font-black text-[#6B3E2E] mb-6">{t(selectedService.title)}</h2>
+                <p className="text-xl md:text-2xl font-light text-[#6B3E2E]/70 leading-relaxed mb-12">
+                  {t(selectedService.description)}
+                </p>
+                
+                {selectedService.image && (
+                  <div className="w-full h-64 md:h-96 rounded-3xl overflow-hidden mb-12">
+                    <img src={selectedService.image} alt={t(selectedService.title)} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                  </div>
+                )}
+
+                <button 
+                  onClick={() => {
+                    setSelectedService(null);
+                    setTimeout(() => {
+                      document.getElementById('احجزي الآن')?.scrollIntoView({ behavior: 'smooth' });
+                    }, 300);
+                  }}
+                  className="w-full bg-medical-gradient text-white py-5 md:py-6 rounded-2xl font-black text-lg md:text-xl shadow-xl hover:scale-[1.02] transition-all"
+                >
+                  {t({ ar: "احجزي هذه الخدمة الآن", en: "Book this service now" })}
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Doctor Details Modal */}
       <AnimatePresence>
