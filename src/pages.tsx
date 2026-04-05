@@ -203,14 +203,14 @@ export const Home = ({ setSelectedService }: any) => {
       {/* Hero Section */}
       <section className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://i.postimg.cc/qvWTRkP8/ʿyadh-1.jpg" 
-            alt="Professional Skincare Beauty" 
-            className="w-full h-full object-cover"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-[#4A2B20]/40 backdrop-blur-[2px]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#4A2B20]/60 via-transparent to-[#4A2B20]/60" />
+          <iframe
+            src="https://player.vimeo.com/video/1180245812?background=1&autoplay=1&loop=1&byline=0&title=0"
+            className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-screen min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+          <div className="absolute inset-0 bg-[#4A2B20]/10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#4A2B20]/30 via-transparent to-[#4A2B20]/50" />
         </div>
 
         <div className="max-w-7xl mx-auto px-6 relative z-10 w-full text-center">

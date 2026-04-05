@@ -63,54 +63,56 @@ const Navbar = ({ setSelectedDoctor }: { setSelectedDoctor: (doc: any) => void }
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "bg-white/95 backdrop-blur-md shadow-sm py-3" : "bg-[#FDF8F3] py-4 md:py-6"}`}>
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <div className="flex items-center shrink-0">
-          <Link to="/">
-            <img 
-              src="https://i.postimg.cc/hGn2M6Tc/556542688-122185234094376669-5342517379412419834-n-removebg-preview.png" 
-              alt="We Derma Logo" 
-              className={`${scrolled ? "h-12 md:h-14" : "h-16 md:h-20"} w-auto object-contain transition-all duration-500`}
-              referrerPolicy="no-referrer"
-            />
-          </Link>
-        </div>
-
-        {/* Desktop Menu */}
-        <div className="hidden lg:flex items-center gap-6 xl:gap-10 text-sm font-bold text-[#6B3E2E]/90">
-          {navLinks.map((link, i) => (
-            <Link key={i} to={link.path} className={`hover:text-medical-teal transition-colors relative group ${location.pathname === link.path ? 'text-medical-teal' : ''}`}>
-              {link.name}
-              <span className={`absolute -bottom-1 right-0 h-0.5 bg-medical-teal transition-all ${location.pathname === link.path ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+    <>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "bg-white/95 backdrop-blur-md shadow-sm py-3" : "bg-[#FDF8F3] py-4 md:py-6"}`}>
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+          <div className="flex items-center shrink-0">
+            <Link to="/">
+              <img 
+                src="https://i.postimg.cc/hGn2M6Tc/556542688-122185234094376669-5342517379412419834-n-removebg-preview.png" 
+                alt="We Derma Logo" 
+                className={`${scrolled ? "h-12 md:h-14" : "h-16 md:h-20"} w-auto object-contain transition-all duration-500`}
+                referrerPolicy="no-referrer"
+              />
             </Link>
-          ))}
-        </div>
-
-        <div className="flex items-center gap-4">
-          <button
-            onClick={() => setLanguage(language === 'ar' ? 'en' : 'ar')}
-            className="flex items-center gap-2 text-[#6B3E2E]/60 hover:text-medical-teal transition-colors font-bold text-sm"
-          >
-            <Globe className="w-5 h-5" />
-            <span className="hidden sm:inline">{language === 'ar' ? 'English' : 'العربية'}</span>
-          </button>
-          
-          <div className="hidden md:flex items-center gap-3 border-l border-[#6B3E2E]/10 pl-4">
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-[#6B3E2E]/60 hover:text-medical-teal transition-colors">
-              <Instagram className="w-5 h-5" />
-            </a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-[#6B3E2E]/60 hover:text-medical-teal transition-colors">
-              <Facebook className="w-5 h-5" />
-            </a>
           </div>
-          <Link to="/#احجزي الآن" className="hidden md:flex bg-medical-gradient text-white px-8 py-3 rounded-full text-sm font-bold hover:shadow-lg hover:shadow-medical-teal/20 transition-all">
-            {t('nav.bookNow')}
-          </Link>
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="lg:hidden p-2 text-[#6B3E2E]">
-            {isMenuOpen ? <X /> : <Menu />}
-          </button>
+
+          {/* Desktop Menu */}
+          <div className="hidden lg:flex items-center gap-6 xl:gap-10 text-sm font-bold text-[#6B3E2E]/90">
+            {navLinks.map((link, i) => (
+              <Link key={i} to={link.path} className={`hover:text-medical-teal transition-colors relative group ${location.pathname === link.path ? 'text-medical-teal' : ''}`}>
+                {link.name}
+                <span className={`absolute -bottom-1 right-0 h-0.5 bg-medical-teal transition-all ${location.pathname === link.path ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+              </Link>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setLanguage(language === 'ar' ? 'en' : 'ar')}
+              className="flex items-center gap-2 text-[#6B3E2E]/60 hover:text-medical-teal transition-colors font-bold text-sm"
+            >
+              <Globe className="w-5 h-5" />
+              <span className="hidden sm:inline">{language === 'ar' ? 'English' : 'العربية'}</span>
+            </button>
+            
+            <div className="hidden md:flex items-center gap-3 border-l border-[#6B3E2E]/10 pl-4">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-[#6B3E2E]/60 hover:text-medical-teal transition-colors">
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-[#6B3E2E]/60 hover:text-medical-teal transition-colors">
+                <Facebook className="w-5 h-5" />
+              </a>
+            </div>
+            <Link to="/#احجزي الآن" className="hidden md:flex bg-medical-gradient text-white px-8 py-3 rounded-full text-sm font-bold hover:shadow-lg hover:shadow-medical-teal/20 transition-all">
+              {t('nav.bookNow')}
+            </Link>
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="lg:hidden p-2 text-[#6B3E2E]">
+              {isMenuOpen ? <X /> : <Menu />}
+            </button>
+          </div>
         </div>
-      </div>
+      </nav>
 
       {/* Mobile Menu */}
       <AnimatePresence>
@@ -119,7 +121,7 @@ const Navbar = ({ setSelectedDoctor }: { setSelectedDoctor: (doc: any) => void }
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="lg:hidden fixed inset-0 top-[96px] md:top-[128px] bg-[#FDF8F3]/95 backdrop-blur-xl z-40 overflow-y-auto"
+            className={`lg:hidden fixed inset-0 ${scrolled ? 'top-[72px]' : 'top-[96px] md:top-[128px]'} bg-[#FDF8F3]/95 backdrop-blur-xl z-40 overflow-y-auto transition-all duration-500`}
           >
             <div className="px-8 py-12 flex flex-col gap-8 text-2xl font-black text-[#6B3E2E] text-center">
               {navLinks.map((link, i) => (
@@ -185,7 +187,7 @@ const Navbar = ({ setSelectedDoctor }: { setSelectedDoctor: (doc: any) => void }
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 };
 
