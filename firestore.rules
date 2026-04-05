@@ -1,7 +1,30 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: appointments
+    // Document ID: auto-generated
+    // Fields:
+    //   - name: string (required, 2-100 chars) - Client's full name
+    //   - phone: string (required, 8-20 chars) - Client's phone number
+    //   - email: string (optional) - Client's email
+    //   - service: string (required) - Service name
+    //   - serviceId: string (optional) - Service ID
+    //   - doctor: string (optional) - Doctor name
+    //   - dateTime: string (required) - ISO date string
+    //   - status: string (required, enum: pending, confirmed, cancelled)
+    //   - createdAt: string (required) - ISO date string
+    //   - serverTimestamp: timestamp (optional) - Server-side timestamp
+    //
+    // ===============================================================
+
+    // ===============================================================
     // Helper Functions
+    // ===============================================================
+    
     function isAuthenticated() {
       return request.auth != null;
     }
@@ -12,12 +35,17 @@ service cloud.firestore {
     }
 
     function isValidAppointment(data) {
-      return data['name'] is string && data['name'].size() >= 2 && data['name'].size() <= 100 &&
+      return data.keys().hasAll(['name', 'phone', 'service', 'dateTime', 'status', 'createdAt']) &&
+             data['name'] is string && data['name'].size() >= 2 && data['name'].size() <= 100 &&
              data['phone'] is string && data['phone'].size() >= 8 && data['phone'].size() <= 20 &&
              data['service'] is string &&
              data['dateTime'] is string &&
-             (data['status'] == 'pending' || data['status'] == 'confirmed' || data['status'] == 'cancelled') &&
-             data['createdAt'] is string;
+             data['status'] in ['pending', 'confirmed', 'cancelled'] &&
+             data['createdAt'] is string &&
+             (!data.keys().hasAny(['email']) || data['email'] is string) &&
+             (!data.keys().hasAny(['serviceId']) || data['serviceId'] is string) &&
+             (!data.keys().hasAny(['doctor']) || data['doctor'] is string) &&
+             (!data.keys().hasAny(['serverTimestamp']) || data['serverTimestamp'] is timestamp);
     }
 
     match /appointments/{appointmentId} {

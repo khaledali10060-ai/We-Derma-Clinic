@@ -66,6 +66,7 @@ export const services = [
     },
     icon: <ShieldCheck className="w-8 h-8" />,
     image: "https://i.postimg.cc/nr3537tL/570824065-122187714230376669-4787344330446368436-n.jpg",
+    videoUrl: "https://www.instagram.com/reel/C9IiT-tgdOG/embed",
   },
 ];
 
@@ -267,6 +268,13 @@ export const doctors = [
     },
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
   }
+];
+
+export const videos = [
+  { id: 1, url: "https://www.instagram.com/reel/C9Vn1Dmg3Ga/embed" }, // تجربة الفنان ماجد المصري
+  { id: 2, url: "https://www.instagram.com/reel/DBT2R1rMBIn/embed" }, // so check
+  { id: 3, url: "https://www.instagram.com/reel/DS-gHSFDC3W/embed" }, // MesoJet
+  { id: 4, url: "https://www.instagram.com/reel/C9IiT-tgdOG/embed" }, // الحزام الناري
 ];
 
 export const results = [

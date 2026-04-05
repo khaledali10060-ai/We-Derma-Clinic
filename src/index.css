@@ -3,16 +3,11 @@
 
 @theme {
   --font-sans: "Cairo", ui-sans-serif, system-ui, sans-serif;
-  --color-medical-teal: #6B3E2E; /* Deep Brown from Logo */
-  --color-medical-blue: #E6C9A8; /* Warm Beige from Logo */
-  --color-soft-gold: #8B5A42; /* Complementary Brown */
-  --color-luxury-gray: #F5E6D3; /* Light Cream */
-  --color-deep-slate: #4A2B20; /* Darker Brown */
 }
 
 @layer base {
   body {
-    @apply font-sans text-[#6B3E2E] bg-[#F5E6D3];
+    @apply font-sans text-[#374151] bg-[#ffffff];
     direction: rtl;
     scroll-behavior: smooth;
   }
@@ -20,22 +15,46 @@
 
 @layer utilities {
   .glass-nav {
-    @apply bg-[#F5E6D3]/70 backdrop-blur-xl border-b border-[#6B3E2E]/10;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    @apply border-b border-[#f1f1f1];
   }
   .glass-card {
-    @apply bg-white/80 backdrop-blur-md border border-[#E6C9A8]/50;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    @apply border border-[#f1f1f1];
+  }
+  .premium-glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .premium-card {
+    background: linear-gradient(145deg, #ffffff, #f9fafb);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+    transition: all 0.3s ease;
+  }
+  .premium-card:hover {
+    box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+    transform: translateY(-4px);
+  }
+  .premium-shadow {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+    transition: all 0.3s ease;
+  }
+  .premium-shadow:hover {
+    box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+  }
+  .premium-hover {
+    transition: all 0.3s ease;
+  }
+  .premium-hover:hover {
+    transform: translateY(-4px);
   }
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#6B3E2E] to-[#8B5A42];
-  }
-  .bg-medical-gradient {
-    @apply bg-gradient-to-br from-[#6B3E2E] to-[#8B5A42];
-  }
-  .soft-shadow {
-    box-shadow: 0 20px 50px -12px rgba(107, 62, 46, 0.12);
-  }
-  .luxury-shadow {
-    box-shadow: 0 30px 60px -15px rgba(74, 43, 32, 0.08);
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#14b8a6] to-[#0f766e];
   }
   .scrollbar-hide::-webkit-scrollbar {
     display: none;

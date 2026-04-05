@@ -9,9 +9,12 @@
         "phone": { "type": "string", "description": "Client's phone number." },
         "email": { "type": "string", "format": "email", "description": "Client's email address." },
         "service": { "type": "string", "description": "The requested medical service." },
+        "serviceId": { "type": "string", "description": "The ID of the requested service." },
+        "doctor": { "type": "string", "description": "The requested doctor's name." },
         "dateTime": { "type": "string", "format": "date-time", "description": "Preferred date and time for the appointment." },
         "status": { "type": "string", "enum": ["pending", "confirmed", "cancelled"], "description": "Current status of the appointment." },
-        "createdAt": { "type": "string", "format": "date-time", "description": "When the request was created." }
+        "createdAt": { "type": "string", "format": "date-time", "description": "When the request was created (ISO string)." },
+        "serverTimestamp": { "type": "string", "format": "date-time", "description": "Server-side timestamp for the request." }
       },
       "required": ["name", "phone", "service", "dateTime", "status", "createdAt"]
     }
