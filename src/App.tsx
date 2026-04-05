@@ -194,6 +194,7 @@ const Navbar = ({ setSelectedDoctor }: { setSelectedDoctor: (doc: any) => void }
 const Footer = () => {
   const { t, isRTL } = useLanguage();
   const phoneNumber = "01060008882";
+  const whatsappNumber = "201060008882";
   const navLinks = [
     { name: t('nav.home'), path: "/" },
     { name: t('nav.services'), path: "/services" },
@@ -246,11 +247,11 @@ const Footer = () => {
             <ul className="space-y-6 md:space-y-8 text-[#6b7280] font-bold text-sm md:text-base">
               <li className="flex items-center gap-4 md:gap-5">
                 <div className="w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-[#0f766e]/5 flex items-center justify-center shrink-0"><Phone className="w-5 h-5 md:w-6 md:h-6 text-[#0f766e]" /></div>
-                <span dir="ltr" className="text-base md:text-lg">{phoneNumber}</span>
+                <a href="tel:01060008882" dir="ltr" className="text-base md:text-lg hover:text-[#0f766e] transition-colors">{phoneNumber}</a>
               </li>
               <li className="flex items-center gap-4 md:gap-5">
                 <div className="w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-[#0f766e]/5 flex items-center justify-center shrink-0"><MessageCircle className="w-5 h-5 md:w-6 md:h-6 text-[#0f766e]" /></div>
-                <span className="text-base md:text-lg">{t('footer.whatsappAvailable')}</span>
+                <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer" className="text-base md:text-lg hover:text-[#0f766e] transition-colors">{t('footer.whatsappAvailable')}</a>
               </li>
             </ul>
           </div>
@@ -272,7 +273,8 @@ const MainApp = () => {
   const [selectedService, setSelectedService] = useState<any>(null);
   const { t, language, isRTL } = useLanguage();
   const phoneNumber = "01060008882";
-  const whatsappLink = `https://wa.me/${phoneNumber}`;
+  const whatsappNumber = "201060008882";
+  const whatsappLink = `https://wa.me/${whatsappNumber}`;
 
   return (
     <div className={`min-h-screen bg-[#ffffff] selection:bg-[#0f766e]/10 overflow-x-hidden ${isRTL ? 'font-arabic' : 'font-sans'}`}>

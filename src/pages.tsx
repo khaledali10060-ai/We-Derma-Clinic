@@ -73,7 +73,7 @@ const InstagramFeed = () => {
                     {t({ ar: "متابعة", en: "Follow" })}
                   </a>
                   <a 
-                    href="https://wa.me/01060008882" 
+                    href="https://wa.me/201060008882" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="bg-transparent border border-[#e5e7eb] text-[#374151] px-6 py-2 rounded-lg font-bold text-sm hover:bg-[#f9fafb] transition-all"
@@ -205,7 +205,8 @@ export const Home = ({ setSelectedService }: any) => {
   });
 
   const phoneNumber = "01060008882";
-  const whatsappLink = `https://wa.me/${phoneNumber}`;
+  const whatsappNumber = "201060008882";
+  const whatsappLink = `https://wa.me/${whatsappNumber}`;
 
   const handleBookingSubmit = async (e: React.FormEvent, method: 'database' | 'whatsapp') => {
     e.preventDefault();
@@ -238,7 +239,7 @@ export const Home = ({ setSelectedService }: any) => {
             `*Appointment:* ${formData.dateTime}`;
         
         const encodedMessage = encodeURIComponent(message);
-        window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+        window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
       }
 
       setBookingStatus('success');
@@ -709,7 +710,7 @@ export const Home = ({ setSelectedService }: any) => {
             <h2 className="text-3xl md:text-5xl lg:text-7xl font-black text-[#111827] mb-6 md:mb-10 leading-tight">{t({ ar: "ابدئي رحلتكِ نحو", en: "Start Your Journey Towards" })} <br /> <span className="text-[#14b8a6]">{t({ ar: "بشرة مثالية", en: "Perfect Skin" })}</span> {t({ ar: "اليوم", en: "Today" })}</h2>
             <p className="text-[#6b7280] text-lg md:text-xl mb-10 md:mb-16 font-light max-w-2xl mx-auto">{t({ ar: "احجزي الآن واستمتعي بجلسة استشارة مخصصة مع أفضل خبراء التجميل في مصر.", en: "Book now and enjoy a personalized consultation session with the best beauty experts in Egypt." })}</p>
             <div className="flex flex-col items-center gap-8 md:gap-10">
-              <div className="text-3xl md:text-5xl lg:text-6xl font-black text-[#111827] tracking-tighter" dir="ltr">{phoneNumber}</div>
+              <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer" className="text-3xl md:text-5xl lg:text-6xl font-black text-[#111827] tracking-tighter hover:text-[#14b8a6] transition-colors" dir="ltr">{phoneNumber}</a>
               <a href={`#${t({ ar: "احجزي الآن", en: "Book Now" })}`} className="bg-gradient-to-r from-[#14b8a6] to-[#0f766e] text-[#ffffff] px-10 md:px-16 py-5 md:py-7 rounded-full text-xl md:text-2xl font-black hover:shadow-2xl hover:shadow-[#0f766e]/40 hover:from-[#0f766e] hover:to-[#115e59] transition-all flex items-center gap-4 group">
                 <Calendar className="w-8 h-8 md:w-10 md:h-10" />
                 {t({ ar: "احجزي موعدكِ الآن", en: "Book Your Appointment Now" })}
